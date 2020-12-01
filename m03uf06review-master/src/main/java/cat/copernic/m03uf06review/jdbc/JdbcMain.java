@@ -25,7 +25,11 @@ public class JdbcMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) { //Per a la proxima vegada, estructurar mes en metodes, mantenir el main net.
+        obteDades();
 
+    }
+
+    private static void obteDades() {
         Connexio c = new Connexio();
 
         try {
