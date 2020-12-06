@@ -19,13 +19,13 @@ public class Cotxes {
     private boolean Origen_europeu;
     private Date Data_fabricacio;
 
-    /*public Cotxes() {
+    public Cotxes() { /*Inicialment no feia falta, no obstant es necessari pel correcte funcionament d'obtencio de dades de la base de dades mitjancant hibernate.*/
         Model = "";
         Potencia_motor = 0;
         Acceleracio_motor = 0;
         Origen_europeu = false;
         Data_fabricacio = null;
-    }*/
+    }
 
     public Cotxes(String Model, int Potencia_motor, float Acceleracio_motor, boolean Origen_europeu, Date Data_fabricacio) {
         this.Model = Model;
