@@ -41,8 +41,6 @@ public class HibernateMain {
     }
 
     private static void llistaCotxes() {
-        //Session session = fct.openSession();
-
         Transaction tx = null;
 
         try {
@@ -52,7 +50,6 @@ public class HibernateMain {
             for (Iterator iterator = cotxes.iterator(); iterator.hasNext();) {
                 Cotxes cotxe = (Cotxes) iterator.next();
                 System.out.println(cotxe);
-
             }
             tx.commit();
         } catch (HibernateException e) {
