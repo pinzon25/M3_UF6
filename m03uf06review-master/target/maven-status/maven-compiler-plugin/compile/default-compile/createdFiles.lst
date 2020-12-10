@@ -1,5 +1,6 @@
 cat\copernic\m03uf06review\hibernate_relational\HibernateRelationalMain.class
-cat\copernic\m03uf06review\jdbc\JdbcMain.class
 cat\copernic\m03uf06review\hibernate\HibernateMain.class
 cat\copernic\m03uf06review\jdbc\Connexio.class
+cat\copernic\m03uf06review\orm\Cotxes.class
 cat\copernic\m03uf06review\orm\OrmMain.class
+cat\copernic\m03uf06review\jdbc\JdbcMain.class

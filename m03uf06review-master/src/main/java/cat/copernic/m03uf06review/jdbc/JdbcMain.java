@@ -39,7 +39,7 @@ public class JdbcMain {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                System.out.println("Model: " + rs.getString("Model") + "\n" + "Potencia(Cv): " + rs.getInt("Potencia_motor") + "\n" + "Acceleracio(0-100Km/h): " + rs.getFloat("Acceleracio_cent") + " s" + "\n" + "Es europeu: " + rs.getBoolean("Origen_europeu") + "\n" + "Data de fabricacio del model: " + rs.getDate("Data_fabricacio") + "\n\n");
+                System.out.println("Id:" + rs.getInt("Id") + "\n" + "Model: " + rs.getString("Model") + "\n" + "Potencia(Cv): " + rs.getInt("Potencia_motor") + "\n" + "Acceleracio(0-100Km/h): " + rs.getFloat("Acceleracio_cent") + " s" + "\n" + "Es europeu: " + rs.getBoolean("Origen_europeu") + "\n" + "Data de fabricacio del model: " + rs.getDate("Data_fabricacio") + "\n\n");
             }
 
         } catch (SQLException ex) {

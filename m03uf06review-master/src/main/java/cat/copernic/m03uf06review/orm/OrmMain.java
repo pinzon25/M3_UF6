@@ -44,11 +44,13 @@ public class OrmMain {
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                Cotxes ct = new Cotxes(rs.getString("Model"), rs.getInt("Potencia_motor"), rs.getFloat("Acceleracio_cent"), rs.getBoolean("Origen_europeu"), rs.getDate("Data_fabricacio"));
+                Cotxes ct = new Cotxes(rs.getInt("Id"),rs.getString("Model"), rs.getInt("Potencia_motor"), rs.getFloat("Acceleracio_cent"), rs.getBoolean("Origen_europeu"), rs.getDate("Data_fabricacio"));
                 afegeixCotxes(ct);
             }
 
-        } catch (SQLException ex) {Logger.getLogger(JdbcMain.class.getName()).log(Level.SEVERE, null, ex);}
+        } catch (SQLException ex) {
+            Logger.getLogger(JdbcMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private static ArrayList<Cotxes> afegeixCotxes(Cotxes ct) {

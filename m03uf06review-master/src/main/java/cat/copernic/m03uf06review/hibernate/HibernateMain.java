@@ -7,6 +7,8 @@ package cat.copernic.m03uf06review.hibernate;
 
 import cat.copernic.m03uf06review.jdbc.Connexio;
 import cat.copernic.m03uf06review.orm.Cotxes;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Date;
 import java.util.Iterator;
@@ -33,11 +35,29 @@ public class HibernateMain {
 
     static SessionFactory fct = null;
     static Session session = null;
+    static SimpleDateFormat sdf = null;
+    static java.sql.Date sqlDate = null;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
+        converteixData("1963-12-17");
+        //Cotxes cotxe = new Cotxes(13, "Nissan GTR", 670, (float) 3.0, false, sqlDate);
+        Cotxes cotxe1 = new Cotxes(14, "lancia delta integrale", 700, (float) 2.0, true, sqlDate);
         configuraSessio();
         obreSessio();
         llistaCotxes();
+        //insereixCotxe(cotxe1);
+        //eliminaCotxe(13);
+        //actualitzaCotxe(cotxe1);
+    }
+
+    private static java.sql.Date converteixData(String data) throws ParseException {
+        sdf = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date d;
+        d = new Date();
+        d = sdf.parse(data);
+        sqlDate = new java.sql.Date(d.getTime());
+
+        return sqlDate;
     }
 
     private static void llistaCotxes() {
@@ -58,12 +78,12 @@ public class HibernateMain {
             }
             e.printStackTrace();
         } finally {
-            session.close();
+            //session.close();
         }
     }
 
     private static SessionFactory configuraSessio() {
-        fct = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory(); //Nom del fitxer pelat.
+        fct = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
         return fct;
     }
 
@@ -72,4 +92,59 @@ public class HibernateMain {
         return session;
     }
 
+    //private static void insereixCotxe(int id, String model, int potencia, float acceleracio, boolean europeu, String dataFab) throws ParseException {
+    private static void insereixCotxe(Cotxes cotxe) throws ParseException {
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.save(cotxe);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            //session.close();
+        }
+    }
+
+    private static void eliminaCotxe(int id) {
+
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            Cotxes cotxe = (Cotxes) session.get(Cotxes.class, id);
+            session.delete(cotxe);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            //session.close();
+            System.out.println("Cotxe eliminat correctament.");
+        }
+    }
+
+    private static void actualitzaCotxe(Cotxes cotxe/*int id, int potencia*/) {
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.get(Cotxes.class, cotxe.getId());
+            session.merge(cotxe);
+
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            //session.close();
+        }
+    }
 }

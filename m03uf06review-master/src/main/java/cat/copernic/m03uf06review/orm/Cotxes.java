@@ -13,13 +13,15 @@ import java.sql.Date;
  */
 public class Cotxes {
 
+    private int id;
     private String Model;
     private int Potencia_motor;
     private float Acceleracio_motor;
     private boolean Origen_europeu;
     private Date Data_fabricacio;
 
-    public Cotxes() { /*Inicialment no feia falta, no obstant es necessari pel correcte funcionament d'obtencio de dades de la base de dades mitjancant hibernate.*/
+    public Cotxes() {
+        id = 0;
         Model = "";
         Potencia_motor = 0;
         Acceleracio_motor = 0;
@@ -27,12 +29,21 @@ public class Cotxes {
         Data_fabricacio = null;
     }
 
-    public Cotxes(String Model, int Potencia_motor, float Acceleracio_motor, boolean Origen_europeu, Date Data_fabricacio) {
+    public Cotxes(int id, String Model, int Potencia_motor, float Acceleracio_motor, boolean Origen_europeu, Date Data_fabricacio) {
+        this.id = id;
         this.Model = Model;
         this.Potencia_motor = Potencia_motor;
         this.Acceleracio_motor = Acceleracio_motor;
         this.Origen_europeu = Origen_europeu;
         this.Data_fabricacio = Data_fabricacio;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -105,9 +116,14 @@ public class Cotxes {
         this.Data_fabricacio = Data_fabricacio;
     }
 
+    /*
     @Override
     public String toString() {
-        return "Cotxes{" + "Model=" + Model + ", Potencia_motor=" + Potencia_motor + ", Acceleracio_motor=" + Acceleracio_motor + ", Origen_europeu=" + Origen_europeu + ", Data_fabricacio=" + Data_fabricacio + '}';
+        return "Cotxes{" "Id"+id +",Model=" + Model + ", Potencia_motor=" + Potencia_motor + ", Acceleracio_motor=" + Acceleracio_motor + ", Origen_europeu=" + Origen_europeu + ", Data_fabricacio=" + Data_fabricacio + '}';
+    }*/
+    @Override
+    public String toString() {
+        return "Cotxes{" + "id=" + id + ", Model=" + Model + ", Potencia_motor=" + Potencia_motor + ", Acceleracio_motor=" + Acceleracio_motor + ", Origen_europeu=" + Origen_europeu + ", Data_fabricacio=" + Data_fabricacio + '}';
     }
 
 }

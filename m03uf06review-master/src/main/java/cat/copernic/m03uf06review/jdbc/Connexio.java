@@ -34,7 +34,7 @@ public class Connexio {
             con = DriverManager.getConnection(url + "?useUnicode=true&"
                     + "useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", usuari, contrasenya);
 
-            System.out.println("Connexio establerta amb la base de dades: " + bbdd + "\n\n");
+            //System.out.println("Connexio establerta amb la base de dades: " + bbdd + "\n\n");
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Connexio.class.getName()).log(Level.SEVERE, null, ex);
